@@ -98,6 +98,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h2>Use index finger to control mouse</h2>
         <canvas
           style={{
             transform: "scaleX(-1)",

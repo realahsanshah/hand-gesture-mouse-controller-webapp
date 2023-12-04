@@ -65,12 +65,10 @@ export const drawHands = (hands: any, ctx: any, cursorRef: any, showNames = fals
 
         // move mouse to index finger
         if (hands[i].keypoints[8].x > 0) {
-            console.log('move mouse');
-            // move mouse to specific position
+            console.log('move mouse', hands[i].keypoints[8].x, hands[i].keypoints[8].y);
+            // move mouse to specific position with reverse x 
             cursorRef.current.style.left = `${hands[i].keypoints[8].x}px`;
             cursorRef.current.style.top = `${hands[i].keypoints[8].y}px`;
-
-
         }
 
 
