@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+#cursor {
+  pointer-events: none;
+  /* doing this makes sure .elementFromPoint
+  do not acquires the image cursor object */
+  position: absolute;
+}
+
+* {
+  cursor: none;
+}

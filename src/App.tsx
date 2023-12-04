@@ -58,6 +58,7 @@ function App() {
   const detectorRef = useRef<any>();
   const videoRef = useRef<any>();
   const [ctx, setCtx] = useState<any>();
+  const cursorRef = useRef<any>();
 
   const setup = async () => {
     videoRef.current = await setupVideo();
@@ -91,7 +92,7 @@ function App() {
       videoRef.current.videoWidth,
       videoRef.current.videoHeight
     );
-    drawHands(hands, ctx);
+    drawHands(hands, ctx, cursorRef);
   }, !!(detectorRef.current && videoRef.current && ctx));
 
   return (
@@ -121,6 +122,13 @@ function App() {
           playsInline
         ></video>
       </header>
+      <img
+        id="cursor"
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20200319212118/cursor2.png"
+        width="15"
+        height="20"
+        ref={cursorRef}
+      />
     </div>
   );
 }

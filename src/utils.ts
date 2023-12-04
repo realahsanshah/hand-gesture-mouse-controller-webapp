@@ -17,7 +17,7 @@ const FINGER_LOOKUP_INDICES: any = {
 };
 
 
-export const drawHands = (hands: any, ctx: any, showNames = false) => {
+export const drawHands = (hands: any, ctx: any, cursorRef: any, showNames = false) => {
     if (hands.length <= 0) { return; }
 
     hands.sort((hand1: any, hand2: any) => {
@@ -62,6 +62,17 @@ export const drawHands = (hands: any, ctx: any, showNames = false) => {
         if (hands[i].keypoints[4].x - hands[i].keypoints[8].x < 2) {
             console.log('click');
         }
+
+        // move mouse to index finger
+        if (hands[i].keypoints[8].x > 0) {
+            console.log('move mouse');
+            // move mouse to specific position
+            cursorRef.current.style.left = `${hands[i].keypoints[8].x}px`;
+            cursorRef.current.style.top = `${hands[i].keypoints[8].y}px`;
+
+
+        }
+
 
     }
 }
