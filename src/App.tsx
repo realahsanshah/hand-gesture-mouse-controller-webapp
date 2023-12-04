@@ -59,6 +59,8 @@ function App() {
   const [ctx, setCtx] = useState<any>();
   const cursorRef = useRef<any>();
 
+  const [clicked, setClicked] = useState(false);
+
   const setup = async () => {
     videoRef.current = await setupVideo();
     const detector = await setupDetector();
@@ -91,7 +93,7 @@ function App() {
       videoRef.current.videoWidth,
       videoRef.current.videoHeight
     );
-    drawHands(hands, ctx, cursorRef);
+    drawHands(hands, ctx, cursorRef, setClicked);
   }, !!(detectorRef.current && videoRef.current && ctx));
 
   return (
@@ -123,6 +125,7 @@ function App() {
         ></video>
       </header>
       <img
+        alt="cursor"
         id="cursor"
         src="https://media.geeksforgeeks.org/wp-content/uploads/20200319212118/cursor2.png"
         width="15"

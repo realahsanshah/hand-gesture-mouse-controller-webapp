@@ -17,7 +17,7 @@ const FINGER_LOOKUP_INDICES: any = {
 };
 
 
-export const drawHands = (hands: any, ctx: any, cursorRef: any, showNames = false) => {
+export const drawHands = (hands: any, ctx: any, cursorRef: any, setClicked: any, showNames = false) => {
     if (hands.length <= 0) { return; }
 
     hands.sort((hand1: any, hand2: any) => {
@@ -57,17 +57,24 @@ export const drawHands = (hands: any, ctx: any, cursorRef: any, showNames = fals
 
             drawPath(points, ctx);
         }
-        // console.log(hands[i]);
         // if thumb and index finger are close, console.log('click'), only once
-        if (hands[i].keypoints[4].x - hands[i].keypoints[8].x < 2) {
+        if (hands[i].keypoints[4].x - hands[i].keypoints[8].x < 10) {
             console.log('click');
+            setClicked(true)
+        } else {
+            setClicked(false)
         }
 
         // move mouse to index finger
         if (hands[i].keypoints[8].x > 0) {
-            console.log('move mouse', hands[i].keypoints[8].x, hands[i].keypoints[8].y);
-            // move mouse to specific position with reverse x 
+            // get current x point of cursorRef
+            console.log(cursorRef.current.style.left);
+            console.log(cursorRef.current.style.top);
+
+            // reverse x movement
+
             cursorRef.current.style.left = `${hands[i].keypoints[8].x}px`;
+
             cursorRef.current.style.top = `${hands[i].keypoints[8].y}px`;
         }
 
